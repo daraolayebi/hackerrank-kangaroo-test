@@ -4,10 +4,10 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import store from './store'
-import './assets/styles/reset.css'
-import './assets/styles/main.css'
+import VueJsModal from 'vue-js-modal'
+import './assets/scss/app.scss';
 
-
+Vue.use(VueJsModal)
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */

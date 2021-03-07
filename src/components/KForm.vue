@@ -1,6 +1,6 @@
 <template>
     <div>
-        <form @submit.prevent="kangaroo">
+        <form @submit.prevent="submitForm">
             <div class="form-group">
                 <label for="">Kangaroo A Position</label>
                 <input type="number" id="positionA" name="positionA" v-model="x1" max="10000" placeholder="Enter Position A" required />
@@ -17,74 +17,46 @@
                 <label for="">Kangaroo B Speed (meters)</label>
                 <input type="number" id="speedB" name="speedB" v-model="v2" min="1" max="10000" placeholder="Enter Speed B" required />
             </div>
-            <button type="submit" class="button" :disabled="loading">Jump</button>
+            <div class="button-wrapper">
+                <button type="submit" class="button">Jump</button>
+            </div>
         </form>
-        <div class="test-result">
-            <p class="result-pending" v-if="!result">The result will go here 
-                <span>.</span>
-                <span>.</span>
-                <span>.</span>
-            </p>
-            <template v-else>
-                <h2>{{result}}!</h2>
-                <span v-if="result == 'YES'">The kangaroos landed on the same spot! :)</span>
-                <span v-else>Oops! The kangaroos are not together :(</span>
-                <button type="button" class="button" @click="resetTest">Test Again</button>
-            </template>
-        </div>
+        <k-form-result :result="result" @reset-form="resetForm" />
     </div>
 </template>
 
 <script>
+import kangaroo from '../kangaroo'
+import KFormResult from './KFormResult'
 export default {
   name: 'TestForm',
+  components: { KFormResult },
   data () {
     return {
         x1: "",
         v1: "",
         x2: "",
         v2: "",
-        maxNoOfJumps: 10000,
-        result: "",
-        loading: false
+        result: ""
     }
   },
   methods: {
-    kangaroo() {
-        this.loading = true;
-        let finalPositionA;
-        let finalPositionB;
-        for (let jump = 0; jump <= this.maxNoOfJumps; jump++) {
-            finalPositionA = (+(this.x1) + +(this.v1)) * jump;
-            finalPositionB = (+(this.x2) + +(this.v2)) * jump;
-        
-            console.log('finalPositionA', finalPositionA);
-            console.log('finalPositionB', finalPositionB);
-
-            (finalPositionA == finalPositionB) ? this.result = "YES" : this.result = "NO";
-
-            // if (this.x1 > this.x2) {
-            //     this.result = "NO"
-            //     this.warning = true
-            // }    
-        }
+    submitForm() {
+        this.result = kangaroo(this.x1, this.v1, this.x2, this.v2);
+        this.$modal.show('form-result')
         this.$store.commit('SAVE_TEST', {
             date: new Date(),
             fields: `${this.x1}, ${this.v1}, ${this.x2}, ${this.v2}`,
             result: this.result
         })
     },
-    resetTest() {
+    resetForm() {
         this.result = "";
         this.x1 = "";
         this.v1 = "";
         this.x2 = "";
         this.v2 = "";
-    }
-  },
-  watch: {
-    result(value) {
-        if (value) this.loading = false
+        this.$modal.hide('form-result')
     }
   }
 }
