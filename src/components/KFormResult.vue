@@ -2,8 +2,12 @@
     <modal name="form-result" :width="400" :minWidth="400" :clickToClose="false">
         <div class="modal-body">
             <h2>{{result}}!</h2>
-            <span v-if="result == 'YES'">The kangaroos landed on the same spot! :)</span>
-            <span v-else>Oops! The kangaroos are not together :(</span>
+            <span v-if="result == 'YES'">Kangaroos landed on the same spot! :)</span>
+            <small v-else>Oops! Kangaroos are not in the same spot :(</small>
+            <div class="kangaroo-icons" :class="{ 'separated' : result == 'NO' }">
+                <img src="@/assets/icons/logo.svg" class="kangaroo" width="40">
+                <img src="@/assets/icons/logo.svg" class="kangaroo" width="40">
+            </div>
             <button type="button" class="button" @click="$emit('reset-form')">Test Again</button>
         </div>
     </modal>

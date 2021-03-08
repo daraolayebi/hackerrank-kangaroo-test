@@ -4,7 +4,7 @@
             <thead>
                 <tr>
                     <th>S/N</th>
-                    <th>Date/Time</th>
+                    <th>Date</th>
                     <th>Fields</th>
                     <th>Result</th>
                 </tr>

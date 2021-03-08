@@ -5,7 +5,7 @@
             <router-view/>
         </main>
         <footer>
-            <small>&copy; Kangaroooo 2021.</small>
+            <small>&copy; kangaroooo 2021.</small>
         </footer>
     </div>
 </template>

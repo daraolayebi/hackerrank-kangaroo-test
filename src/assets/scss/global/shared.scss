@@ -34,7 +34,7 @@ h3 {
 }
 
 h4 {
-    font-size: 20px;
+    font-size: 25px;
 }
 
 p {
@@ -80,9 +80,9 @@ em {
 }
 
 .main {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    @include flexbox();
+    @include align-items(center);
+    @include justify-content(center);
     flex-direction: column;
     height: 75vh;
 }
@@ -93,24 +93,23 @@ em {
 
 .nav-content {
     padding: 11px 0;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    @include flexbox();
+    @include align-items(center);
+    @include justify-content(space-between);
 }
 
 .nav-logo {
-    display: flex;
-    align-items: flex-end;
+    @include flexbox();
+    @include align-items(flex-end);
 
     img {
         width:47px;
-        margin-right: -4px;
+        margin-right: 2px;
     }
     span {
-        text-transform: uppercase;
         color: $color-green;
-        font-weight: 500;
-        font-size: 21px;
+        font-weight: 400;
+        font-size: 23px;
     }
 }
 
@@ -132,14 +131,32 @@ em {
     left: 0;
 }
 
+.vm--modal {
+    border-radius: 12px!important;
+}
+
+.kangaroo-icons {
+    margin: 15px 0;
+    > * {
+        margin-right: -7px;
+        margin-left: -7px;
+    }
+    &.separated > * {
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+}
+
+
+
 form {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    @include flexbox();
+    @include align-items(center);
+    @include justify-content(center);
 }
 
 .form-group {
-    margin: 0 15px;
+    margin: 0 10px;
 }
 
 label {
@@ -152,7 +169,7 @@ input {
     font-size: inherit;
     padding: 20px 12px;
     border: 1px solid transparent;
-    border-radius: 4px;
+    border-radius: 8px;
     min-width: 220px;
     -webkit-transition: all 300ms ease-in-out;
     transition: all 300ms ease-in-out;
@@ -160,10 +177,10 @@ input {
     &:focus {
         border: 1px solid $color-green;
     }
-}
 
-.button-wrapper {
-    width: 85px;
+    &:valid {
+        border: 1px solid $color-green;
+    }
 }
 
 .button {    
@@ -175,12 +192,18 @@ input {
     text-align: center;
     background: $color-green;
     padding: 20px 10px;
-    border-radius: 4px;
-    margin-top: 28px;
+    border-radius: 6px;
+    -webkit-transition: 300ms ease-in-out;
+    transition: 300ms ease-in-out;
+
+    &-small {
+        width: 85px;
+        margin-top: 28px;
+    }
 
     &:disabled {
         opacity: .4;
-        pointer-events: none;
+        cursor: not-allowed;
     }
 }
 
@@ -274,10 +297,13 @@ footer {
     }
     .form-group {
         width: 100%;
-        margin-bottom: 25px;
+        margin: 0 0 30px 0;
     }
     .button {
-        margin-top: 0;
+        &-small {
+            width: 100%;
+            margin-top: 0;
+        }
     } 
     footer {
         position: relative;
@@ -294,24 +320,41 @@ footer {
     table {
         width: 100%;
     }
-    .button-wrapper {
-        width: 100%;
+    .modal-body {
+        padding: 20px;
     }
 
 }
 
 
 @media screen and (max-width: $breakpoint-small) {
-    .nav-logo span {
-        display: none;
+    .container {
+        padding: 0 25px;
+    }
+    .nav-logo {
+        span {
+            display: none;
+        }
+        img {
+            width: 40px;
+        }
     }
     .nav-item {
         margin-left: 25px;
-    }   
+    }  
+    .router-link-exact-active:after {
+        bottom: -20px;
+    } 
     h1 {
         font-size: 35px; 
     }
     form {
         max-width: 100%;
+    }
+    .vm--modal {
+        width: auto !important;
+        margin: 25px;
+        left: 0 !important;
+        right: 0 !important;
     }
 }

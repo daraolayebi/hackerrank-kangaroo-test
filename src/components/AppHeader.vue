@@ -4,8 +4,8 @@
             <div class="container">
                 <div class="nav-content">
                     <div class="nav-logo">
-                    <img src="@/assets/logo.svg" alt="logo" />
-                    <span>Kangaroooo</span>
+                    <img src="@/assets/icons/logo.svg" alt="logo" />
+                    <span>kangaroooo</span>
                 </div>
                 <div class="nav-list">
                     <router-link class="nav-item" to="/">Home</router-link>

@@ -17,8 +17,8 @@
                 <label for="">Kangaroo B Speed (meters)</label>
                 <input type="number" id="speedB" name="speedB" v-model="v2" min="1" max="10000" placeholder="Enter Speed B" required />
             </div>
-            <div class="button-wrapper">
-                <button type="submit" class="button">Jump</button>
+            <div class="form-group">
+                <button type="submit" class="button button-small" :disabled="!formIsComplete">Jump</button>
             </div>
         </form>
         <k-form-result :result="result" @reset-form="resetForm" />
@@ -39,6 +39,11 @@ export default {
         v2: "",
         result: ""
     }
+  },
+  computed:{
+      formIsComplete() {
+        if (this.x1 && this.v1 && this.x2 && this.v2) return true;
+      }
   },
   methods: {
     submitForm() {
