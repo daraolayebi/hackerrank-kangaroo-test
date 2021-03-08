@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import '../assets/scss/app.scss';
+import '@/assets/scss/app.scss';
 const AppHeader = () => import('@/components/AppHeader')
 export default {
   name: 'Index',

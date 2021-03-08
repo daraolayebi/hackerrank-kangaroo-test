@@ -1,10 +1,16 @@
 body {
     font-family: "Inter", sans-serif;
-    font-size: 16px;
+    font-size: 15px;
     font-weight: 400;
     line-height: 1.5;
     color: $color-grey;
     background: $color-background;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+body::-webkit-scrollbar {
+    display: none;
 }
 
 h1,
@@ -166,7 +172,7 @@ label {
 
 input {
     font-family: inherit;
-    font-size: inherit;
+    font-size: 16px;
     padding: 20px 12px;
     border: 1px solid transparent;
     border-radius: 8px;
@@ -213,20 +219,24 @@ input {
 
 table {
     border-collapse: collapse;
-    border-radius: 1em;
-    overflow: hidden;
+    border-radius: 1em;  
+    display: block;
+    max-height: 410px;
+    overflow-y: scroll;
     margin: auto;
     width: 70%; 
+    background-color: rgba(255, 255, 255, .85);
 }
 
-tr {
-    margin: 5px;
-    background-color: rgba(255, 255, 255, .85);
+table thead,
+table tbody tr {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
 }
 
 th {
     font-weight: 600;
-    padding: 1rem 1.5rem !important;
     border-bottom: 1px solid rgba(0,112, 71, .27);
     font-size: 13px;
     color: $color-grey-lighter;
@@ -235,25 +245,33 @@ th {
 th,
 td {
     text-align: left;
-    padding: 2rem 1.5rem;
+    padding: 1.5rem;
     vertical-align: middle;
+}
+
+th.sn,
+td.sn {
+    width: 15%;
 }
 
 .table-status-label {
     border-radius: 60px;
-    padding: 6px 14px 4px;
+    padding: 3px 14px 2px;
     font-weight: 600;
     font-size: 15px;
-}
+    display: block;
+    width: 60px;
+    text-align: center;
 
-.positive {
-    background-color: #CFE7DC;
-    color: #5DA77E;
-}
+    &.yes {
+        background-color: #CFE7DC;
+        color: #5DA77E;
+    }
 
-.negative {
-    background-color: #fdd6d6;
-    color: #c2363b; 
+    &.no {
+        background-color: #fdd6d6;
+        color: #c2363b; 
+    }
 }
 
 .table-footer {

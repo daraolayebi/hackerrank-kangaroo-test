@@ -5,10 +5,10 @@ Vue.use(Vuex)
 
 const store = new Vuex.Store({
     state: {
-        history: [],
+        history: []
     },
     getters: {
-        history: state => state.history
+        history: state => state.history.reverse()
     },
     mutations: {
         SAVE_TEST: (state, payload) => state.history.push(payload)
